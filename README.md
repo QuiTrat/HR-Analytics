@@ -111,7 +111,7 @@ Database credentials:
 
 - Table name: employment
 
-##**3. Extract Data**
+## **3. Extract Data**
 
 Import needed library:
 
@@ -124,7 +124,7 @@ import statsmodels.api as sm
 ```
 Then extract data from sources:
 
-###**Enrollies_data**
+### **Enrollies_data**
 
 We extract file on the Google Sheet that stores data about enrolled students
 
@@ -133,16 +133,13 @@ google_sheet_id='1VCkHwBjJGRJ21asd9pxW4_0z2PWuKhbLR3gUHm-p4GI'
 url='https://docs.google.com/spreadsheets/d/' + google_sheet_id + '/export?format=xlsx'
 enrollies_data= pd.read_excel(url, sheet_name='enrollies')
 enrollies_data.info()
+enrollies_data.head()
 ```
 
-<class 'pandas.core.frame.DataFrame'>
-RangeIndex: 19158 entries, 0 to 19157
-Data columns (total 4 columns):
- #   Column       Non-Null Count  Dtype   
----  ------       --------------  -----   
- 0   enrollee_id  19158 non-null  int64   
- 1   full_name    19158 non-null  string  
- 2   city         19158 non-null  category
- 3   gender       19158 non-null  category
-dtypes: category(2), int64(1), string(1)
-memory usage: 342.0 KB
+|    |   enrollee_id | full_name     | city     | gender   |
+|---:|--------------:|:--------------|:---------|:---------|
+|  0 |          8949 | Mike Jones    | city_103 | Male     |
+|  1 |         29725 | Laura Jones   | city_40  | Male     |
+|  2 |         11561 | David Miller  | city_21  | Male     |
+|  3 |         33241 | Laura Davis   | city_115 | Male     |
+|  4 |           666 | Alex Martinez | city_162 | Male     |
