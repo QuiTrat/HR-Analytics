@@ -126,7 +126,7 @@ Then extract data from sources:
 
 ### **Enrollies_data**
 
-We extract file on the Google Sheet that stores data about enrolled students
+We extract file on the Google Sheet that stores data about enrolled students, and look at some information about this data
 
 ```
 google_sheet_id='1VCkHwBjJGRJ21asd9pxW4_0z2PWuKhbLR3gUHm-p4GI'
@@ -135,6 +135,9 @@ enrollies_data= pd.read_excel(url, sheet_name='enrollies')
 enrollies_data.info()
 enrollies_data.head()
 ```
+
+![image](https://github.com/user-attachments/assets/d7b84f98-9f2c-4629-a3df-6267827a8681)
+
 
 |    |   enrollee_id | full_name     | city     | gender   |
 |---:|--------------:|:--------------|:---------|:---------|
