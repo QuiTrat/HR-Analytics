@@ -124,7 +124,7 @@ import statsmodels.api as sm
 ```
 Then extract data from sources:
 
-### **Enrollies_data**
+### **Enrollies's data**
 
 We extract file on the Google Sheet that stores data about enrolled students, and look at some information about this data
 
@@ -146,3 +146,132 @@ enrollies_data.head()
 |  2 |         11561 | David Miller  | city_21  | Male     |
 |  3 |         33241 | Laura Davis   | city_115 | Male     |
 |  4 |           666 | Alex Martinez | city_162 | Male     |
+
+### **Enrollies's Education**
+
+Extract enrollies's education level in the Excel format. This data is stored in my Google Drive, so I need to set a path to my Google Drive before extract data
+
+```
+## Mount the path to Google Drive
+from google.colab import drive
+drive.mount('/content/drive')
+
+# check the file in my drive
+!ls /content/drive/MyDrive/Sample_data/enrollies_education.xlsx
+
+# load the data and look information
+
+enrollies_education = pd.read_excel('/content/drive/MyDrive/Sample_data/enrollies_education.xlsx')
+enrollies_education.info()
+enrollies_education.head()
+```
+![image](https://github.com/user-attachments/assets/5e2e95d4-7ba3-40fa-9a6e-2bd146429e83)
+
+
+|    |   enrollee_id | enrolled_university   | education_level   | major_discipline   |
+|---:|--------------:|:----------------------|:------------------|:-------------------|
+|  0 |          8949 | no_enrollment         | Graduate          | STEM               |
+|  1 |         29725 | no_enrollment         | Graduate          | STEM               |
+|  2 |         11561 | Full time course      | Graduate          | STEM               |
+|  3 |         33241 | nan                   | Graduate          | Business Degree    |
+|  4 |           666 | no_enrollment         | Masters           | STEM               |
+
+
+### **Enrollies' working experience**
+
+Extract enrollies working experience which is stored as csv file in Google drive and explore its information
+
+```
+!ls /content/drive/MyDrive/Sample_data/work_experience.csv
+work_experience = pd.read_csv('/content/drive/MyDrive/Sample_data/work_experience.csv')
+work_experience.info()
+work_experience.head()
+```
+![image](https://github.com/user-attachments/assets/4bcad900-7877-47ba-b9e2-b61739a3c2a2)
+
+
+|    |   enrollee_id | relevent_experience     | experience   | company_size   | company_type   | last_new_job   |
+|---:|--------------:|:------------------------|:-------------|:---------------|:---------------|:---------------|
+|  0 |          8949 | Has relevent experience | >20          | nan            | nan            | 1              |
+|  1 |         29725 | No relevent experience  | 15           | 50-99          | Pvt Ltd        | >4             |
+|  2 |         11561 | No relevent experience  | 5            | nan            | nan            | never          |
+|  3 |         33241 | No relevent experience  | <1           | nan            | Pvt Ltd        | never          |
+|  4 |           666 | Has relevent experience | >20          | 50-99          | Funded Startup | 4              |
+
+
+### **Training hours**
+
+Extract tranining hour from LMS system's database
+```
+!pip install pymysql
+
+from sqlalchemy import create_engine
+import pymysql
+
+engine= create_engine(
+    'mysql+pymysql://etl_practice:550814@112.213.86.31:3360/company_course'
+
+training_hours=pd.read_sql_table('training_hours', con=engine)
+training_hours.info()
+training_hours.head()
+```
+
+![image](https://github.com/user-attachments/assets/2d5621b0-8697-4cfa-87dc-8651e055139e)
+
+
+|    |   enrollee_id |   training_hours |
+|---:|--------------:|-----------------:|
+|  0 |          8949 |               36 |
+|  1 |         29725 |               47 |
+|  2 |         11561 |               83 |
+|  3 |         33241 |               52 |
+|  4 |           666 |                8 |
+
+
+### **City development index**
+
+Extract data from website
+```
+# Use pandas to read the HTML table
+tables = pd.read_html('https://sca-programming-school.github.io/city_development_index/index.html')
+
+# Assuming the first table on the webpage is the one you want (indexing starts from 0)
+City = tables[0]
+
+City.info()
+City.head()
+```
+
+![image](https://github.com/user-attachments/assets/092db3e1-7b30-4c58-9c8c-267fbe574fae)
+
+
+|    | City     |   City Development Index |
+|---:|:---------|-------------------------:|
+|  0 | city_103 |                    0.92  |
+|  1 | city_40  |                    0.776 |
+|  2 | city_21  |                    0.624 |
+|  3 | city_115 |                    0.789 |
+|  4 | city_162 |                    0.767 |
+
+### **Employment**
+
+Employment data is also stored in the same place as Training hours
+
+```
+employment=pd.read_sql_table('employment', con=engine)
+employment.info()
+employment.head()
+```
+![image](https://github.com/user-attachments/assets/9f07b4c8-4a43-43b3-b388-4d9ffae1de28)
+
+
+|    |   enrollee_id |   employed |
+|---:|--------------:|-----------:|
+|  0 |             1 |          0 |
+|  1 |             2 |          1 |
+|  2 |             4 |          0 |
+|  3 |             5 |          0 |
+|  4 |             7 |          0 |
+
+## **4. Transform Data**
+
