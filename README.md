@@ -273,7 +273,7 @@ employment.head()
 |  3 |             5 |          0 |
 |  4 |             7 |          0 |
 
-## **4. Transform Data**
+##**4. Transform Data**
 
 ###**Enrollies Data**
 
@@ -283,9 +283,8 @@ employment.head()
 enrollies_data['city'] = enrollies_data['city'].astype('category')
 enrollies_data['gender'] = enrollies_data['gender'].astype('category')
 enrollies_data['full_name'] = enrollies_data['full_name'].astype('string')
-
-
 ```
+
 |             | 0        |
 |:------------|:---------|
 | enrollee_id | Int64    |
@@ -294,13 +293,15 @@ enrollies_data['full_name'] = enrollies_data['full_name'].astype('string')
 | gender      | category |
   
 - Handle with missing value in gender column
+  
   ```
-  # calculate mode() of gender - replace missing value with mode()
+ ### calculate mode() of gender - replace missing value with mode()
 
 gender_mode = enrollies_data['gender'].mode()[0]
 enrollies_data['gender'].fillna(gender_mode, inplace=True)
 enrollies_data.head()
 ```
+
 
 |    |   enrollee_id | full_name     | city     | gender   |
 |---:|--------------:|:--------------|:---------|:---------|
@@ -310,7 +311,9 @@ enrollies_data.head()
 |  3 |         33241 | Laura Davis   | city_115 | Male     |
 |  4 |           666 | Alex Martinez | city_162 | Male     |
 
+
 ![image](https://github.com/user-attachments/assets/db10d316-f9fe-4845-91ac-1b4a9afad460)
+
 
 ### **Enrollies Education**
 
