@@ -461,6 +461,6 @@ training_hours = training_hours[(training_hours['training_hours'] >= lower_bound
 | 75%   |      25169.5  |          78      |
 | max   |      33379    |         167      |
 
-##**5. Load data into warehouse**
+## **5. Load data into warehouse**
 
 
