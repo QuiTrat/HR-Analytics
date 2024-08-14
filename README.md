@@ -273,9 +273,9 @@ employment.head()
 |  3 |             5 |          0 |
 |  4 |             7 |          0 |
 
-##**4. Transform Data**
+## **4. Transform Data**
 
-###**Enrollies Data**
+### **Enrollies Data**
 
 - Change dtypes of columns: full_name, city and gender
 
@@ -294,14 +294,12 @@ enrollies_data['full_name'] = enrollies_data['full_name'].astype('string')
   
 - Handle with missing value in gender column
   
-  ```
- ### calculate mode() of gender - replace missing value with mode()
-
+```
+### calculate mode() of gender - replace missing value with mode()
 gender_mode = enrollies_data['gender'].mode()[0]
 enrollies_data['gender'].fillna(gender_mode, inplace=True)
 enrollies_data.head()
 ```
-
 
 |    |   enrollee_id | full_name     | city     | gender   |
 |---:|--------------:|:--------------|:---------|:---------|
@@ -310,7 +308,6 @@ enrollies_data.head()
 |  2 |         11561 | David Miller  | city_21  | Male     |
 |  3 |         33241 | Laura Davis   | city_115 | Male     |
 |  4 |           666 | Alex Martinez | city_162 | Male     |
-
 
 ![image](https://github.com/user-attachments/assets/db10d316-f9fe-4845-91ac-1b4a9afad460)
 
@@ -324,14 +321,19 @@ enrollies_education['enrolled_university'].fillna('missing',inplace=True)
 enrollies_education['education_level'].fillna('missing',inplace=True)
 enrollies_education['major_discipline'].fillna('missing',inplace=True)
 ```
+
+
 - Change all letter of string in column to lower case
+
 
 ```
 enrollies_education['enrolled_university'] = enrollies_education['enrolled_university'].str.lower()
 enrollies_education['education_level'] = enrollies_education['education_level'].str.lower()
 enrollies_education['major_discipline'] = enrollies_education['major_discipline'].str.lower()
 ```
+
 - Change space in string to "_" in columns
+
 
 ```
 enrollies_education['enrolled_university'] = enrollies_education['enrolled_university'].str.replace(' ', '_')
@@ -339,6 +341,7 @@ enrollies_education['education_level'] = enrollies_education['education_level'].
 enrollies_education['major_discipline'] = enrollies_education['major_discipline'].str.replace(' ', '_')
 enrollies_education.head(10)
 ```
+
 |    |   enrollee_id | enrolled_university   | education_level   | major_discipline   |
 |---:|--------------:|:----------------------|:------------------|:-------------------|
 |  0 |          8949 | no_enrollment         | graduate          | stem               |
