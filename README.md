@@ -355,7 +355,7 @@ enrollies_education.head(10)
 |  8 |         27107 | no_enrollment         | graduate          | stem               |
 |  9 |           699 | no_enrollment         | graduate          | stem               |
 
-###**Working Experience**
+### **Working Experience**
 
 - Handle missing values
 
@@ -387,7 +387,7 @@ work_experience['company_size'] = work_experience['company_size'].astype('catego
 work_experience['company_type'] = work_experience['company_type'].astype('category')
 ```
 
-- Change string (1/49) to (1-49)
+- Change string (10/49) to (10-49)
 
 ```
 work_experience['company_size'].unique()
@@ -412,7 +412,7 @@ work_experience['company_size'] = work_experience['company_size'].str.replace('/
 | <10            |          1308 |                  1308 |         1308 |           1308 |           1308 |
 | Unknown        |          5938 |                  5938 |         5938 |           5938 |           5938 |
 
-###**Training hours**
+### **Training hours**
 
 I calculate summary Statistics training hours Columns
 ```
@@ -434,18 +434,18 @@ We see that the max training hours is 336 a, It looks like a invalid data, we wo
 I will remove these outlier to make data more realistic
 
 ```
-# Calculate q25, q75
+### Calculate q25, q75
 
 q25 = training_hours['training_hours'].quantile(0.25)
 q75 = training_hours['training_hours'].quantile(0.75)
 
-# IQR
+### IQR
 
 iqr = q75 - q25
 lower_bound = q25 - (iqr * 1.5)
 upper_bound = q75 + (iqr * 1.5)
 
-# remove outlier
+### remove outlier
 
 training_hours = training_hours[(training_hours['training_hours'] >= lower_bound) & (training_hours['training_hours'] <= upper_bound)]
 ```
