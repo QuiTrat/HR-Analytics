@@ -390,10 +390,20 @@ work_experience['company_type'] = work_experience['company_type'].astype('catego
 - Change string (10/49) to (10-49)
 
 ```
-work_experience['company_size'].unique()
+work_experience.groupby('company_size').count().to_markdown()
 ```
 
-![image](https://github.com/user-attachments/assets/c66ef85e-5ba6-463b-af79-ac818b1f0538)
+| company_size   |   enrollee_id |   relevent_experience |   experience |   company_type |   last_new_job |
+|:---------------|--------------:|----------------------:|-------------:|---------------:|---------------:|
+| 10/49          |          1471 |                  1471 |         1471 |           1471 |           1471 |
+| 100-500        |          2571 |                  2571 |         2571 |           2571 |           2571 |
+| 1000-4999      |          1328 |                  1328 |         1328 |           1328 |           1328 |
+| 10000+         |          2019 |                  2019 |         2019 |           2019 |           2019 |
+| 50-99          |          3083 |                  3083 |         3083 |           3083 |           3083 |
+| 500-999        |           877 |                   877 |          877 |            877 |            877 |
+| 5000-9999      |           563 |                   563 |          563 |            563 |            563 |
+| <10            |          1308 |                  1308 |         1308 |           1308 |           1308 |
+| Unknown        |          5938 |                  5938 |         5938 |           5938 |           5938 |
 
 
 ```
