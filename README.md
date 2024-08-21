@@ -491,9 +491,9 @@ training_engine = create_engine('mysql+pymysql://etl:488579@112.213.86.31:3360/d
 
 Then write dataframes into the warehouse database using the .to_sql() method:
 
+
 ```
 # Write DataFrames to database
-
 enrollies_data.to_sql('Dim_EnrolliesData', con=training_engine, if_exists='replace', index=False)
 enrollies_education.to_sql('Fact_EnrolliesEducation', con=training_engine, if_exists='replace', index=False)
 work_experience.to_sql('Dim_WorkExperience', con=training_engine, if_exists='replace', index=False)
@@ -501,6 +501,7 @@ training_hours.to_sql('Dim_TrainingHours', con=training_engine, if_exists='repla
 City.to_sql('Dim_City', con=training_engine, if_exists='replace', index=False)
 employment.to_sql('Dim_Employment', con=training_engine, if_exists='replace', index=False)
 ```
+
 
 Now we can check the result using any GUI client. For example DBeaver:
 
