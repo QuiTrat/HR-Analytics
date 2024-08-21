@@ -474,4 +474,45 @@ training_hours = training_hours[(training_hours['training_hours'] >= lower_bound
 
 ## **5. Load data into warehouse**
 
+Our Warehouse database is located here:
 
+- Host: 112.213.86.31
+- Port: 3360
+- Login: etl
+- Password: 488579
+- Database name: data_warehouse
+
+  At first, create another MySQL connection to load data into Warehouse:
+
+  ```
+  # Create an engine object to connect to the database
+training_engine = create_engine('mysql+pymysql://etl:488579@112.213.86.31:3360/data_warehouse')
+```
+
+Then write dataframes into the warehouse database using the .to_sql() method:
+
+```
+# Write DataFrames to database
+
+enrollies_data.to_sql('Dim_EnrolliesData', con=training_engine, if_exists='replace', index=False)
+enrollies_education.to_sql('Fact_EnrolliesEducation', con=training_engine, if_exists='replace', index=False)
+work_experience.to_sql('Dim_WorkExperience', con=training_engine, if_exists='replace', index=False)
+training_hours.to_sql('Dim_TrainingHours', con=training_engine, if_exists='replace', index=False)
+City.to_sql('Dim_City', con=training_engine, if_exists='replace', index=False)
+employment.to_sql('Dim_Employment', con=training_engine, if_exists='replace', index=False)
+```
+
+Now we can check the result using any GUI client. For example DBeaver:
+
+![image](https://github.com/user-attachments/assets/68cc2d74-b787-46a5-adfd-1bb2a0b98e67)
+
+
+```
+⚠️ Take a note
+
+To do this, you need to meet the following requirements:
+
+Python3 should be installed on your machine
+All the used libraries should be intsalled via pip (or pip3 in Linux and Mac)
+The whole ETL script should be combined into a single file with the .py extension
+```
